@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENGINEER_PORTFOLIO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050505;
+            color: #94a3b8;
+            font-family: 'Inter', sans-serif; /* Clean, classic, readable */
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif; /* Geometric, aerospace feel */
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.02em;
+        }
+
+        /* Make technical specs stand out with the classic feel */
+        .data-line {
+            font-family: 'Inter', monospace;
+            font-weight: 600;
+        }
+        .text-accent { color: #06b6d4; }
+        
+        /* The "Flash" Animation */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .reveal.active {
+            opacity: 1; 
+            transform: translateY(0); 
+            /* Add this glow effect */
+            animation: flicker 0.3s ease-in-out, glow-up 1s ease-out;
+        }
+
+        @keyframes glow-up {
+            0% { border-left-color: #050505; }
+            100% { border-left-color: #06b6d4; }
+        }
+        
+        @keyframes flicker {
+            0% { opacity: 0; }
+            50% { opacity: 1; filter: brightness(2); }
+            100% { opacity: 1; filter: brightness(1); }
+        }
+
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        button {
+            cursor: pointer;
+            background: transparent;
+            outline: none;
+        }
+
+        button:hover {
+            box-shadow: 0 0 10px #06b6d4; /* Adds a "glow" effect when hovered */
+        }
+
+        /* The Arrow Container */
+        .arrow-container {
+            margin-top: 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* The Arrow Shape */
+        .chevron {
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid #06b6d4;
+            border-bottom: 2px solid #06b6d4;
+            transform: rotate(45deg);
+            animation: bounce 2s infinite;
+        }
+
+        /* Subtle bounce animation to encourage clicking */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
+            40% { transform: translateY(-10px) rotate(45deg); }
+            60% { transform: translateY(-5px) rotate(45deg); }
+        }
+
+        .pulse-text {
+            color: #fff;
+            text-shadow: 0 0 5px #06b6d4, 0 0 10px #06b6d4;
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.8; text-shadow: 0 0 5px #06b6d4; }
+            50% { opacity: 1; text-shadow: 0 0 15px #06b6d4, 0 0 20px #06b6d4; }
+        }
+
+        /* A softer, more professional pulse */
+        .text-xs {
+            animation: soft-pulse 4s infinite ease-in-out;
+        }
+
+        @keyframes soft-pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .logo-filter {
+            filter: grayscale(100%) brightness(0.8) contrast(1.2);
+            transition: all 0.3s ease;
+        }
+
+        /* Make them "glow" and regain color on hover */
+        .logo-filter:hover {
+            filter: grayscale(0%) brightness(1.2) contrast(1);
+            transform: scale(1.05);
+        }
+
+        /* Container for the list item to keep layout tight */
+        .typing-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Force the chevron to be small and fixed width */
+        .chevron-marker {
+            display: inline-block;
+            width: 1.5rem; /* Fixed width for alignment */
+            font-size: 0.8rem; /* Smaller than the main text */
+            color: #06b6d4;
+            flex-shrink: 0;
+            margin-top: 0.2rem; /* Micro-adjustment for vertical alignment */
+        }
+
+        /* Make the description text smaller */
+        .description-text {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #94a3b8;
+        }
+
+        .typing-item {
+            white-space: pre-wrap; /* This preserves the spaces and line breaks */
+        }
+
+        #summary {
+            scroll-margin-top: 2rem; /* Adds 32px of space above the summary when scrolling */
+        }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <!-- Landing Page / Hero -->
+    <section class="h-screen flex flex-col justify-center items-center">
+        <h1 class="pulse-text text-5xl font-bold text-white uppercase tracking-tighter">Wayne Choy</h1>
+        
+        <!-- Muted, smaller LinkedIn link -->
+        <a href="https://www.linkedin.com/in/choywayne/" target="_blank" 
+        class="mt-4 text-xs tracking-[0.2em] text-cyan-700 hover:text-cyan-400 transition-all duration-300">
+        connect with me
+        </a>
+
+        <div class="arrow-container mt-16" onclick="scrollToWork()">
+            <div class="chevron"></div>
+        </div>
+    </section>
+
+    <!-- Professional Summary Section -->
+    <section id="summary" class="max-w-3xl mx-auto py-10">
+        <h2 class="text-accent uppercase tracking-[0.3em] mb-8 border-l-4 border-accent pl-4 text-sm">
+            PROFESSIONAL SUMMARY
+        </h2>
+        
+        <div class="p-6 border-l border-cyan-900 bg-slate-900/10">
+            <p class="text-gray-300 leading-relaxed text-sm">
+                Versatile Engineering Manager and IPT Lead with over 10 years of experience in aerospace and defense. Expert at driving success within highly exploratory, ambiguous development environments. 
+                Proven track record of leading multidisciplinary teams through the IRAD lifecycle, from early design and development to successful flight testing. Adept at translating complex technical challenges into actionable executive strategies.
+            </p>
+        </div>
+    </section>
+
+    <!-- Work History Section -->
+    <main id="work-history" class="max-w-3xl mx-auto py-20">
+        <h2 class="text-accent uppercase tracking-[0.3em] mb-12 border-l-4 border-accent pl-4 text-sm">
+            Professional Experience
+        </h2>
+
+        <!-- Lockheed Martin Container -->
+        <div class="reveal p-6 border-l border-cyan-900 bg-slate-900/10 mb-8">
+            <h3 class="text-white font-bold text-xl mb-6 tracking-widest">LOCKHEED MARTIN</h3>
+            
+            <!-- Current Role -->
+            <div class="mb-8 pl-4 border-l-2 border-cyan-500">
+                <h4 class="text-white font-semibold">Guidance, Navigation, & Control (GNC) Engineering Manager</h4>
+                <p class="text-xs text-cyan-600 mb-4 font-mono">2024 - PRESENT</p>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="chevron-marker font-mono">></span>
+                        <span class="typing-item description-text">Strategic Leadership: Lead an Integrated Product Team Lead (IPT Lead) for Advanced Programs - Integrated Air & Missile Defense product. Serve as primary technical point of contact for customer leadership and internal leadership stakeholders.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="chevron-marker font-mono">></span>
+                        <span class="typing-item description-text">Technical Oversight: Drive interceptor and fire control algorithm development (missile guidance, navigation, and autopilot), modeling & simulation, and performance analysis, overseeing the end-to-end integration of SWIL and HWIL testing, leading up to flight testing.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="chevron-marker font-mono">></span>
+                        <span class="typing-item description-text">Programmatic Oversight: Own end-to-end IPT cost and schedule performance, ensuring technical milestones are met and align with contractual obligations and budgetary constraints.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="chevron-marker font-mono">></span>
+                        <span class="typing-item description-text">Contract Transition: Experienced with executing and transitioning IRAD initiatives into active Other Transaction Authority (OTA) contracts with a speed-focused approach.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Previous Role -->
+            <div class="mb-10 pl-4 border-l-2 border-slate-700">
+                <h4 class="text-gray-400 font-semibold">GNC Engineer - IRAD Principal Investigator</h4>
+                <p class="text-xs text-gray-500 mb-4 font-mono">2021 - 2024</p>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="chevron-marker font-mono">></span>
+                        <span class="typing-item description-text">Technical Leadership & Execution: Player-coach responsible for the day-to-day execution of the Algorithms and M&S team, supporting several development IRAD initiatives, directly contributing to several successful customer demos culminating in two successful flight tests and the capture of subsequent contract awards. </span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="chevron-marker font-mono">></span>
+                        <span class="typing-item description-text">Individual Contribution: Developed and implemented algorithm updates for interceptor initialization, navigation, flyout guidance, and datalink content. Developed algorithms for fire control threat state estimation, engageability, launch solution, interceptor flyout prediction, datalink content. Developed simulation models of missile, fire control, radar, and launch platform components in 6-DOF simulation. Performed Monte Carlo simulation analysis with 6-DOF to assess interceptor and system performance. Supported SWIL, HWIL, in-field integration testing. Developed Matlab and Python tools to support engineering analysis.  </span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Previous Role -->
+            <div class="pl-4 border-l-2 border-slate-900">
+                <h4 class="text-gray-400 font-semibold">GNC Engineer</h4>
+                <p class="text-xs text-gray-500 mb-4 font-mono">2019 - 2021</p>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="chevron-marker font-mono">></span>
+                        <span class="typing-item description-text">Individual Contribution: Developed and updated models in multiple 6-DOF simulation frameworks (C++, Fortran) to assess and characterize interceptor and system performance. Conducted several performance assessment studies for various government contracts and IRAD projects. </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Additional Company Container -->
+        <div class="reveal p-6 border-l border-slate-800 bg-slate-900/5 mb-8">
+            <h3 class="text-gray-300 font-bold text-xl mb-6 tracking-widest">BOEING</h3>
+            
+            <!-- Previous Role -->
+            <div class="pl-4 border-l-2 border-slate-700">
+                <h4 class="text-gray-400 font-semibold">Dynamics Engineer</h4>
+                <p class="text-xs text-gray-500 mb-4 font-mono">2017 - 2019</p>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="chevron-marker font-mono">></span>
+                        <span class="typing-item description-text">Individual Contribution: Developed simulation models to predict and assess dynamic behavior of the Space Launch System during different phases of flight. Created scripts and automated tools in Matlab to process and analyze results.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="reveal p-6 border-l border-slate-800 bg-slate-900/5 mb-8">
+            <h3 class="text-gray-300 font-bold text-xl mb-6 tracking-widest">QUORUM SOFTWARE</h3>
+            
+            <!-- Previous Role -->
+            <div class="pl-4 border-l-2 border-slate-700">
+                <h4 class="text-gray-400 font-semibold">Software Engineering Consultant</h4>
+                <p class="text-xs text-gray-500 mb-4 font-mono">2014 - 2015</p>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="chevron-marker font-mono">></span>
+                        <span class="typing-item description-text">Individual Contribution: Developed software solutions for the oil and gas industry, with a focus on pipeline management.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <section id="education" class="max-w-3xl mx-auto py-10">
+            <h2 class="text-accent uppercase tracking-[0.3em] mb-12 border-l-4 border-accent pl-4 text-sm">
+                Educational Experience
+            </h2>
+
+            <div class="reveal p-6 border-l border-cyan-900 bg-slate-900/10">
+                    <h3 class="text-white font-bold text-xl mb-6">THE UNIVERSITY OF TEXAS AT AUSTIN</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Master's -->
+                        <div class="pl-4 border-l-2 border-cyan-600">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-white font-semibold">M.S. Aerospace Engineering</span>
+                                <span class="text-xs text-cyan-600 font-mono">2016</span>
+                            </div>
+                        </div>
+
+                        <!-- Bachelor's -->
+                        <div class="pl-4 border-l-2 border-cyan-600">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-white font-semibold">B.S. Aerospace Engineering</span>
+                                <span class="text-xs text-cyan-600 font-mono">2014</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+    </main>
+
+    <script>
+        function scrollToWork() {
+            document.getElementById('summary').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+        // Configuration: The typing speed in milliseconds
+        const TYPING_SPEED = 10;
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('active')) {
+                    entry.target.classList.add('active');
+                    
+                    // Trigger typing effect for paragraphs within the revealed section
+                    // Change this line to target only the text
+                    const textElements = entry.target.querySelectorAll('.typing-item');
+                    textElements.forEach(el => typeText(el));
+                }
+            });
+        }, { threshold: 0.2 });
+
+        function typeText(el) {
+            // Save the full content (chevron + text)
+            const fullText = el.innerText;
+            
+            // Clear the element
+            el.innerText = '';
+            el.style.opacity = '1';
+            el.classList.add('typing-cursor');
+            
+            let i = 0;
+            const timer = setInterval(() => {
+                if (i < fullText.length) {
+                    el.innerText += fullText.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                    el.classList.remove('typing-cursor');
+                }
+            }, 15); // Your new faster speed
+        }
+
+        // Apply the observer to your work history items
+        document.querySelectorAll('.reveal').forEach((el) => {
+            // Hide initial text so it can be "typed"
+            el.querySelectorAll('p').forEach(p => p.style.opacity = '0');
+            revealObserver.observe(el);
+        });
+
+        // Function to scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/Hide button based on scroll position
+        window.onscroll = function() {
+            const btn = document.getElementById("backToTop");
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                btn.classList.remove("hidden");
+            } else {
+                btn.classList.add("hidden");
+            }
+        };
+</script>
+
+<!-- Back to Top Button -->
+<div id="backToTop" class="fixed bottom-8 right-8 cursor-pointer hidden flex flex-col items-center gap-1" onclick="scrollToTop()">
+    <div class="p-3 bg-slate-900/50 border border-cyan-800 hover:border-cyan-400">
+        <div class="w-4 h-4 border-l-2 border-t-2 border-cyan-600 rotate-45 mt-1"></div>
+    </div>
+    <span class="text-[10px] text-cyan-700 tracking-widest uppercase">Home</span>
+</div>
+</body>
+</html>
